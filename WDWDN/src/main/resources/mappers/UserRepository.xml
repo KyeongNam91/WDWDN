@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mbti.mapper.UserMapper">
+    <insert id="insertUser">
+        INSERT INTO users (username, password, name, email, mbti)
+        VALUES (#{username}, #{password}, #{name}, #{email}, #{mbti})
+    </insert>
+
+       <select id="findByUsername" resultType="com.mbti.vo.User">
+        SELECT * FROM users WHERE username = #{username}
+    </select>
+    
+    <!-- 이메일 중복 확인 쿼리 -->
+    <select id="isEmailExists" resultType="boolean">
+        SELECT COUNT(1) > 0
+        FROM users
+        WHERE email = #{email}
+    </select>
+    
+        <select id="isUsernameExists" resultType="boolean">
+        SELECT COUNT(1) > 0
+        FROM users
+        WHERE username = #{username}
+    </select>
+    
+</mapper>
