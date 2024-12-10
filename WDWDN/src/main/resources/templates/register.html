@@ -110,7 +110,7 @@
 
     <!-- Login Form -->
     <div class="form-container sign-in-container">
-        <form th:action="@{/login}" method="post">
+       <form th:action="@{/login}" th:object="${user}" method="post">
             <h1>로그인</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
