@@ -16,6 +16,7 @@ public class HomeController {
 	    if (principal != null) {
 	        String username = principal.getName(); // 로그인된 유저 이름
 	        model.addAttribute("username", username); // 모델에 추가
+	    
 	    } else {
 	        model.addAttribute("username", "Guest"); // 기본값 설정
 	    }
