@@ -15,6 +15,20 @@
 <meta property="og:image" content="https://웹사이트/images/opengraph.png">
 <meta property="og:url" content="https://웹사이트">
 <title>로그인페이지 | 오늘뭐하지</title>
+  <script>
+        // 로그인 실패 시 알림창
+        function showError() {
+            alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        }
+
+        // 로그아웃 성공 시 알림창
+        function showLogout() {
+            alert('로그아웃 되었습니다.');
+        }
+    </script>
+	
+	<!-- Font Awesome CDN link for icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 <link rel="stylesheet" href="/css/setting.css">
 <link rel="stylesheet" href="/css/plugin.css">
 <link rel="stylesheet" href="/css/template.css">
@@ -22,6 +36,135 @@
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/login.css">
 <style>
+	/* Importing Google Fonts - Poppins */
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+	* {
+	  margin: 0;
+	  padding: 0;
+	  box-sizing: border-box;
+	  font-family: "Poppins", sans-serif;
+	}
+	.login-text {
+	      font-size: 2em; /* 글자 크기를 2배로 */
+	      font-weight: bold; /* 글자를 굵게 */
+	  }
+	body {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  height: 100vh;
+	  padding: 15px;
+	  background: #1abc9c;
+	  overflow: hidden;
+	}
+
+	.wrapper {
+	  max-width: 500px;
+	  width: 100%;
+	  background: #fff;
+	  border-radius: 5px;
+	  box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+	}
+
+	.wrapper .title {
+	  height: 150px;
+	  background: #16a085;
+	  border-radius: 5px 5px 0 0;
+	  color: #fff;
+	  font-size: 30px;
+	  font-weight: 600;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	}
+
+	.wrapper form {
+	  padding: 25px 35px;
+	}
+
+	.wrapper form .row {
+	  height: 60px;
+	  margin-top: 15px;
+	  position: relative;
+	}
+
+	.wrapper form .row input {
+	  height: 100%;
+	  width: 100%;
+	  outline: none;
+	  padding-left: 70px;
+	  border-radius: 5px;
+	  border: 1px solid lightgrey;
+	  font-size: 18px;
+	  transition: all 0.3s ease;
+	}
+
+	form .row input:focus {
+	  border-color: #16a085;
+	}
+
+	form .row input::placeholder {
+	  color: #999;
+	}
+
+	.wrapper form .row i {
+	  position: absolute;
+	  width: 55px;
+	  height: 100%;
+	  color: #fff;
+	  font-size: 22px;
+	  background: #16a085;
+	  border: 1px solid #16a085;
+	  border-radius: 5px 0 0 5px;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	}
+
+	.wrapper form .pass {
+	  margin-top: 12px;
+	}
+
+	.wrapper form .pass a {
+	  color: #16a085;
+	  font-size: 17px;
+	  text-decoration: none;
+	}
+
+	.wrapper form .pass a:hover {
+	  text-decoration: underline;
+	}
+
+	.wrapper form .button input {
+	  margin-top: 20px;
+	  color: #fff;
+	  font-size: 60px;
+	  font-weight: 500;
+	  padding-left: 0px;
+	  background: #16a085;
+	  border: 1px solid #16a085;
+	  cursor: pointer;
+	}
+
+	form .button input:hover {
+	  background: #12876f;
+	}
+
+	.wrapper form .signup-link {
+	  text-align: center;
+	  margin-top: 45px;
+	  font-size: 17px;
+	}
+
+	.wrapper form .signup-link a {
+	  color: #16a085;
+	  text-decoration: none;
+	}
+
+	form .signup-link a:hover {
+	  text-decoration: underline;
+	}
 </style>
 </head>
 
@@ -65,93 +208,59 @@
 	</div>
 
 	<!-- 로그인 화면 -->
-	<div class="container" id="container">
-    <!-- Sign Up Form -->
-    <div class="form-container sign-up-container">
-       
-        
-        <!-- <div class="social-container">
-            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a> 네이버 로그인
-            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a> 구글 로그인
-        </div> 
-        <span>or use your email for registration</span>-->
-        <br>
-           <h1 align="center">회원가입</h1>
-        <form th:action="@{/register}" th:object="${user}" method="post">
-            <input type="text" th:field="*{username}" placeholder="ID" required />
-            <input type="password" th:field="*{password}" placeholder="Password" required />
-            <input type="text" th:field="*{name}" placeholder="Name" required />
-            <input type="email" th:field="*{email}" placeholder="Email" required />
-            <input id="mbti" placeholder="Choose your MBTI" list="mbti-options" th:field="*{mbti}" required />
-            <datalist id="mbti-options">
-                <option value="INTJ">
-                <option value="INTP">
-                <option value="ENTJ">
-                <option value="ENTP">
-                <option value="INFJ">
-                <option value="INFP">
-                <option value="ENFJ">
-                <option value="ENFP">
-                <option value="ISTJ">
-                <option value="ISFJ">
-                <option value="ESTJ">
-                <option value="ESFJ">
-                <option value="ISTP">
-                <option value="ISFP">
-                <option value="ESTP">
-                <option value="ESFP">
-            </datalist>
-            <div th:if="${#fields.hasErrors('mbti')}" class="error-message">
-                <p th:errors="*{mbti}"></p>
-            </div>
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
+	<body>
+	  <div class="wrapper">
+		<div class="title">
+		    <span class="login-text">회원 가입</span>
+		</div>
+	     <form th:action="@{/register.html}" th:object="${user}" method="post">
+	      <div class="row">
+	        <i class="fas fa-user"></i>
+	     <input type="text" id="username" name="username" placeholder="ID" required />
+	      </div>
+		  <div class="row">
+		         <i class="fa-solid fa-lock"></i>
+		       <input type="password" id="password" name="password" placeholder="PASSWORD" required />
+		        </div>
+	      <div class="row">
+	       <i class="fa-regular fa-heart"></i>
+	       <input type="text" id="name" name="name" placeholder="NAME" required />
+	      </div>
+		  <div class="row">
+		         <i class="fa-regular fa-envelope"></i>
+		         <input type="email" id="email" name="email" placeholder="EMAIL" required />
+		        </div>
+				<input id="mbti" placeholder="Choose your MBTI" list="mbti-options" th:field="*{mbti}" required />
+				            <datalist id="mbti-options">
+				                <option value="INTJ">
+				                <option value="INTP">
+				                <option value="ENTJ">
+				                <option value="ENTP">
+				                <option value="INFJ">
+				                <option value="INFP">
+				                <option value="ENFJ">
+				                <option value="ENFP">
+				                <option value="ISTJ">
+				                <option value="ISFJ">
+				                <option value="ESTJ">
+				                <option value="ESFJ">
+				                <option value="ISTP">
+				                <option value="ISFP">
+				                <option value="ESTP">
+				                <option value="ESFP">
+				            </datalist>
+				            <div th:if="${#fields.hasErrors('mbti')}" class="error-message">
+				                <p th:errors="*{mbti}"></p>
+				            </div>
 
-    <!-- Login Form -->
-    <div class="form-container sign-in-container">
-       <form th:action="@{/login}" th:object="${user}" method="post">
-            <h1>로그인</h1>
-            <div class="social-container">
-                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <span>or use your account</span>
-            <div>
-                <input type="text" id="username" name="username" placeholder="ID" required />
-            </div>
-            <div>
-                <input type="password" id="password" name="password" placeholder="PASSWORD" required />
-            </div>
-            <a href="#">Forgot your password?</a>
-            <button type="submit">Login</button>
-            <div th:if="${param.error}">
-                <p>Invalid username or password</p>
-            </div>
-            <div th:if="${param.logout}">
-                <p>You have been logged out</p>
-            </div>
-        </form>
-    </div>
-
-    <!-- Overlay -->
-    <div class="overlay-container">
-        <div class="overlay">
-            <div class="overlay-panel overlay-left">
-                <h1>Welcome Back!</h1>
-                <p>이미 가입된 ID가 있으신가요?</p>
-                <button class="ghost" id="signIn">로그인</button>
-            </div>
-            <div class="overlay-panel overlay-right">
-                <h1>Hello, Friend!</h1>
-                <p>가입된 ID가 없으신가요?</p>
-                <button class="ghost" id="signUp">회원 가입</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+	      <div class="row button">
+	   		<button type="submit">Sign Up</button>
+	      </div>
+	      <div class="signup-link">이미 가입된 ID가 있으신가요?<br>
+			<a href="/login.html">Login now</a></div>
+	    </form>
+	  </div>
+	</body>
 	<!-- 로그인 화면 끝 -->
 
 	<!-- [S]landing-N6 -->
@@ -163,18 +272,7 @@
 	<script src="js/common.js"></script>
 	<script src="js/script.js"></script>
 	<script type="text/javascript">
-  const signUpButton = document.getElementById('signUp');
-  const signInButton = document.getElementById('signIn');
-  const container = document.getElementById('container');
 
-  signUpButton.addEventListener('click', () => {
-    container.classList.add("right-panel-active");
-  });
-
-  signInButton.addEventListener('click', () => {
-    container.classList.remove("right-panel-active");
-  });
-  
   </script>
 
 </body>
