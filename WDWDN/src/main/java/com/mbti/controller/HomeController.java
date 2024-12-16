@@ -2,6 +2,9 @@ package com.mbti.controller;
 
 import java.security.Principal;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,16 +16,15 @@ public class HomeController {
 
 	@GetMapping("/home.html")
 	public String homePage(Model model, Principal principal) {
-	    if (principal != null) {
-	        String username = principal.getName(); // 로그인된 유저 이름
-	        model.addAttribute("username", username); // 모델에 추가
-	    
-	    } else {
-	        model.addAttribute("username", "Guest"); // 기본값 설정
+		 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	        String username = (authentication != null && authentication.getPrincipal() instanceof User)
+	                ? ((User) authentication.getPrincipal()).getUsername()
+	                : null;
+	        model.addAttribute("username", username); 
+	        return "home.html"; // home.html로 이동
+	        
 	    }
-	    
-	    return "home.html";
-	}
+	
 	    @PostMapping("/home.html")
 	    public String homePagePost(@RequestParam("extraData") String extraData, 
 	                               Model model, 

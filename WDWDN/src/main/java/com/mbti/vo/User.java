@@ -1,5 +1,6 @@
 package com.mbti.vo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,5 +23,9 @@ public class User {
 	private String name;
 	private String mbti;
     private String email;
+    
+    @Column(nullable = false)
     private String role;
+
+    
 }

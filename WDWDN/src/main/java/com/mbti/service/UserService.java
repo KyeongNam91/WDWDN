@@ -2,6 +2,7 @@ package com.mbti.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,7 @@ public class UserService {
 
 	private final UserMapper userMapper;
 	private final PasswordEncoder passwordEncoder;
+	private UserRepository userRepository;
 
 	@Autowired
 	public UserService(UserMapper userMapper, PasswordEncoder passwordEncoder) {
@@ -27,15 +29,15 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         // 이메일 중복 확인
         if (userMapper.isEmailExists(user.getEmail())) {
-            throw new IllegalArgumentException("이미 등록된 이메일입니다.");
+            throw new IllegalArgumentException("이미 등록된 ID입니다.");
         }
         // 사용자명 중복 확인
         if (userMapper.isUsernameExists(user.getUsername())) {
             throw new IllegalArgumentException("이미 등록된 사용자명입니다.");
         }
         // 기본 값 설정 (예: 기본 role 설정)
-        if (user.getRole() == null) {
-            user.setRole("ROLE_USER");  // 기본값: 일반 사용자
+        if (user.getRole() == null || user.getRole().isEmpty()) {
+            user.setRole("USER");
         }
         
         // MBTI 값 유효성 검사 (옵션)
@@ -44,6 +46,8 @@ public class UserService {
             throw new IllegalArgumentException("유효하지 않은 MBTI 값입니다.");
         }
         userMapper.insertUser(user);
+        //System.out.println("회원가입 요청: " + user);
 
 	}
+	 
 }

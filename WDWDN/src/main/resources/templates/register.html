@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8">
@@ -14,19 +14,8 @@
 <meta property="og:description" content="웹사이트입니다">
 <meta property="og:image" content="https://웹사이트/images/opengraph.png">
 <meta property="og:url" content="https://웹사이트">
-<title>로그인페이지 | 오늘뭐하지</title>
-  <script>
-        // 로그인 실패 시 알림창
-        function showError() {
-            alert('아이디 또는 비밀번호가 일치하지 않습니다.');
-        }
+<title>회원 가입 페이지 | 오늘뭐하지</title>
 
-        // 로그아웃 성공 시 알림창
-        function showLogout() {
-            alert('로그아웃 되었습니다.');
-        }
-    </script>
-	
 	<!-- Font Awesome CDN link for icons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 <link rel="stylesheet" href="/css/setting.css">
@@ -177,7 +166,7 @@
 			<div class="s-header__block">
 				<h1 class="s-header__h1">
 					<div class="site-title">
-						<a href="javascript:void(0);" rel="home">WDWDN.</a>
+						<a href="/home.html" rel="home">WDWDN.</a>
 					</div>
 				</h1>
 				<a class="s-header__menu-toggle" href="javascript:void(0);"><span>Menu</span></a>
@@ -215,7 +204,7 @@
 		<div class="title">
 		    <span class="login-text">회원 가입</span>
 		</div>
-	     <form th:action="@{/register}" th:object="${user}" method="post">
+	     <form th:action="@{/register.html}" th:object="${user}" method="post">
 	      <div class="row">
 	        <i class="fas fa-user"></i>
 	     <input type="text" id="username" name="username" placeholder="ID" required />
@@ -259,8 +248,9 @@
 	   		<input type="submit" value="Sign Up" />
 	      </div>
 	      <div class="signup-link">이미 가입된 ID가 있으신가요?<br>
-			<a href="/login.html">Login now</a></div>
+			<a href="/login">Login now</a></div>
 	    </form>
+	    
 	  </div>
 	</body>
 	<!-- 로그인 화면 끝 -->

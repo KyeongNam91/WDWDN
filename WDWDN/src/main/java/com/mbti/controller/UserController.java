@@ -26,24 +26,32 @@ public class UserController {
 	 @GetMapping("/register.html")
 	    public String showRegistrationForm(Model model) {
 	        model.addAttribute("user", new User());
-	        return "register.html";
+	        return "register";
 	    }
 
 	    @PostMapping("/register.html")
-	    public String registerUser(@ModelAttribute User user) {
+	    public String registerUser(@ModelAttribute User user,Model model) {
 	    	System.out.println(user);
+	    	
+	    	  if (user.getRole() == null || user.getRole().isEmpty()) {
+	    	        user.setRole("USER");
+	    	    }
+
 	    	userService.registerUser(user);
+	        model.addAttribute("registrationSuccess", true);  // 성공 상태 전달
 	
-	        return "redirect:/login.html";
+	        return "login.html";  // 성공 후 리다이렉트
 	    }
 	    
-	    @GetMapping("/login.html")
+	    
+
+	    @GetMapping("/login")
 	    public String login(Model model) {
-	    	  model.addAttribute("user", new User());  // User는 username, password와 같은 필드를 가진 클래스라고 가정
-	          return "login.html";  // login.html 템플릿 반환
+	    	  model.addAttribute("user", new User());  
+	          return "login.html";  
 	    }
 	    
-	    @PostMapping("/login.html")
+	    @PostMapping("/login")
 	    public String processLogin(@ModelAttribute("user") User user, BindingResult result) {
 	        // 로그인 처리 로직
 	        if (result.hasErrors()) {

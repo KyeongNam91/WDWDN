@@ -17,13 +17,6 @@ public class WdwdnApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WdwdnApplication.class, args);
 	}
-	@Bean
-	public SpringResourceTemplateResolver templateResolver() {
-	    SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-	    templateResolver.setPrefix("classpath:/templates/");
-	    templateResolver.setSuffix(".html");
-	    templateResolver.setTemplateMode(TemplateMode.HTML);
-	    return templateResolver;
-	}
+	
 }
 

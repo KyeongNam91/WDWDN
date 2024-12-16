@@ -53,25 +53,48 @@
             </li>
           </ul>
         </nav>
-        <ul class="s-header__social">
-          <li>
-            <a href="/login.html" alt="Facebook">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);">
-                <path d="M20,3H4C3.447,3,3,3.448,3,4v16c0,0.552,0.447,1,1,1h8.615v-6.96h-2.338v-2.725h2.338v-2c0-2.325,1.42-3.592,3.5-3.592 c0.699-0.002,1.399,0.034,2.095,0.107v2.42h-1.435c-1.128,0-1.348,0.538-1.348,1.325v1.735h2.697l-0.35,2.725h-2.348V21H20 c0.553,0,1-0.448,1-1V4C21,3.448,20.553,3,20,3z"></path>
-              </svg>
-              <span class="u-screen-reader-text">Facebook</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)" alt="Twitter">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:rgba(0, 0, 0, 1);">
-                <path d="M19.633,7.997c0.013,0.175,0.013,0.349,0.013,0.523c0,5.325-4.053,11.461-11.46,11.461c-2.282,0-4.402-0.661-6.186-1.809 c0.324,0.037,0.636,0.05,0.973,0.05c1.883,0,3.616-0.636,5.001-1.721c-1.771-0.037-3.255-1.197-3.767-2.793 c0.249,0.037,0.499,0.062,0.761,0.062c0.361,0,0.724-0.05,1.061-0.137c-1.847-0.374-3.23-1.995-3.23-3.953v-0.05 c0.537,0.299,1.16,0.486,1.82,0.511C3.534,9.419,2.823,8.184,2.823,6.787c0-0.748,0.199-1.434,0.548-2.032 c1.983,2.443,4.964,4.04,8.306,4.215c-0.062-0.3-0.1-0.611-0.1-0.923c0-2.22,1.796-4.028,4.028-4.028 c1.16,0,2.207,0.486,2.943,1.272c0.91-0.175,1.782-0.512,2.556-0.973c-0.299,0.935-0.936,1.721-1.771,2.22 c0.811-0.088,1.597-0.312,2.319-0.624C21.104,6.712,20.419,7.423,19.633,7.997z"></path>
-              </svg>
-              <span class="u-screen-reader-text">Twitter</span>
-            </a>
-          </li>
-       
-        </ul>
+       <ul class="s-header__social">
+       <p th:if="${username != null}">
+			  <span th:text="${username}"></span> 님 환영합니다.
+			    <i class="fa fa-user-circle" style="color: green;" title="Logged In"></i>
+			</p>
+			<p th:if="${username == null}">
+			    <a href="/login">Login</a>
+			    <i class="fa fa-sign-in" style="color: red;" title="Not Logged In"></i>
+			</p>
+    <!-- 로그인 상태 -->
+    
+	      <li th:if="${username != null}">
+			        <a href="/mypage" alt="mypage">
+			         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+						  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+							  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+							</svg>
+			            <span class="u-screen-reader-text">Mypage</span>
+			        </a>
+			    </li>
+			
+		    <li th:if="${username != null}">
+		       <a href="/logout" alt="Logout" onclick="logoutWithAlert(event)">
+				    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+				        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+				        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+				    </svg>
+				    <span class="u-screen-reader-text">Logout</span>
+				</a>
+		    </li>
+	
+		    <!-- 비로그인 상태 -->
+		    <li th:if="${username == null}">
+		        <a href="/login" alt="Login">
+		           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+					  <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
+					  <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z"/>
+					</svg>
+		            <span class="u-screen-reader-text">Login</span>
+		        </a>
+		    </li>
+		</ul>
       </div>
     </div>
   </header>
@@ -107,8 +130,7 @@
            font-weight: 700;">
        추천 받기
     </a>
-	<p>Logged in as: <span th:text="${username}">[Username]</span></p>
-	  <a href="/logout">Logout</a>
+	
         </section>
       </div>
     </div>
@@ -159,6 +181,15 @@
   <script src="resources/js/template.js"></script>
   <script src="resources/js/common.js"></script>
   <script src="resources/js/script.js"></script>
+  <script>
+    function logoutWithAlert(event) {
+        event.preventDefault(); // 기본 동작 중지
+        if (confirm("로그아웃하시겠습니까?")) {
+            alert("정상적으로 로그아웃되었습니다.");
+            window.location.href = "/logout"; // 로그아웃 URL 호출
+        }
+    }
+</script>
   
   <!-- 회원가입 성공 알림-->
 </body>
