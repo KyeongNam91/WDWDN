@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.mbti.Repository.UserRepository;
 import com.mbti.mapper.UserMapper;
 import com.mbti.vo.User;
 
@@ -19,9 +20,10 @@ public class UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	public UserService(UserMapper userMapper, PasswordEncoder passwordEncoder) {
+	public UserService(UserMapper userMapper, PasswordEncoder passwordEncoder, UserRepository userRepository) {
 		this.userMapper = userMapper;
 		this.passwordEncoder = passwordEncoder;
+		this.userRepository = userRepository;
 	}
 
 	public void registerUser(User user) {
@@ -48,6 +50,17 @@ public class UserService {
         userMapper.insertUser(user);
         //System.out.println("회원가입 요청: " + user);
 
+	}
+	
+	public String getUserMbti(String username) {
+        // USERS 테이블에 대응하는 User 엔티티에서 사용자 정보를 찾습니다.
+        User user = userRepository.findByUsername(username);
+        return user.getMbti(); // 사용자 또는 MBTI 정보가 없으면 "없음" 반환
+    }
+
+	public User findByUsernameAndPassword(String username, String password) {
+		   return userRepository.findByUsernameAndPassword(username, password);
+		
 	}
 	 
 }
