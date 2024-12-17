@@ -163,12 +163,15 @@
       </section>
       <section class="butti-N24" id="ukm4qojytv">
         <h2 class="blind">추천 영화</h2>
+        <br>
         <div class="contents-container container-md">
           <div class="contents-inner">
             <div class="cardset cardset-xl cardset-hor">
+             <div th:each="movie : ${movies}">
               <figure class="cardset-figure">
-                <img class="cardset-img" src="/images/amerie.jpg" alt="카드 이미지" />
+               <img class="cardset-img" th:src="@{'/images/' + ${movie.movie_name} + '.jpg'}" alt="카드 이미지" />
               </figure>
+              </div>
               
               <div class="cardset-body">
                <li th:each="movie : ${movies}">
