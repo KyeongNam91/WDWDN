@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="title" content="웹사이트">
+<meta name="description" content="웹사이트입니다.">
+<meta name="keywords" content="키워드,키워드,키워드">
+<meta property="og:title" content="웹사이트">
+<meta property="og:description" content="웹사이트입니다">
+<meta property="og:image" content="https://웹사이트/images/opengraph.png">
+<meta property="og:url" content="https://웹사이트">
+<title>컨텐츠 추천 | 오늘뭐하지</title>
+<link rel="stylesheet" href="/css/setting.css">
+<link rel="stylesheet" href="/css/plugin.css">
+<link rel="stylesheet" href="/css/template.css">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<style>
+.th-layout-main {
+	background: none;
+}
+</style>
+<body>
+	<!-- [S]landing-N1 -->
+	<header class="landing-N1" data-bid="exm49HCv2S" id="">
+		<div id="masthead" class="header-container s-header">
+			<div class="s-header__block">
+				<h1 class="s-header__h1">
+					<div class="site-title">
+						<a href="javascript:void(0);" rel="home">Wdwdn.</a>
+					</div>
+				</h1>
+				<a class="s-header__menu-toggle" href="javascript:void(0);"> <span>Menu</span>
+				</a>
+			</div>
+			<div class="ss-row s-header__nav-wrap">
+				<nav class="s-header__nav">
+					<ul>
+						<li class="current"><a href="#intro" class="smoothscroll">Home</a>
+						</li>
+						<li><a href="#about" class="smoothscroll">추천1</a></li>
+						<li><a href="#works" class="smoothscroll">추천2</a></li>
+						<li><a href="#colophon" class="smoothscroll">게시판</a></li>
+					</ul>
+				</nav>
+				<ul class="s-header__social">
+					<p th:if="${username != null}">
+						<span th:text="${username}"></span> 님 환영합니다. <i
+							class="fa fa-user-circle" style="color: green;" title="Logged In"></i>
+					</p>
+					<p th:if="${username == null}">
+						<a href="/login">Login</a> <i class="fa fa-sign-in"
+							style="color: red;" title="Not Logged In"></i>
+					</p>
+					<!-- 로그인 상태 -->
+
+					<li th:if="${username != null}"><a href="/mypage" alt="mypage">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-box-arrow-right"
+								viewBox="0 0 16 16">
+						  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+							  <path
+										d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+							</svg>
+			            <span class="u-screen-reader-text">Mypage</span>
+			        
+					</a></li>
+
+					<li th:if="${username != null}"><a href="/logout" alt="Logout"
+						onclick="logoutWithAlert(event)"> <svg
+								xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-box-arrow-right"
+								viewBox="0 0 16 16">
+				        <path fill-rule="evenodd"
+									d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+				        <path fill-rule="evenodd"
+									d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+				    </svg> <span class="u-screen-reader-text">Logout</span>
+					</a></li>
+
+					<!-- 비로그인 상태 -->
+					<li th:if="${username == null}"><a href="/login" alt="Login">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+					  <path
+									d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1" />
+					  <path
+									d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z" />
+					</svg> <span class="u-screen-reader-text">Login</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</header>
+	<!-- [E]landing-N1 -->
+	<main class="th-layout-main ">
+		<!-- [S]landing-N3 -->
+		<div class="landing-N3" data-bid="hEm49HCV6Q" id="">
+			<div class="contents-container">
+				<section id="intro" class="s-intro">
+					<div class="s-intro__content">
+						<div class="s-intro__text">
+							<h1 class="s-intro__text-huge"
+								style="font-weight: 300; background-position: 50% 50%; color: rgb(168, 33, 33); white-space: nowrap; position: relative; font-size: 150px;">
+								What do we do now?​<br>
+							</h1>
+						</div>
+						<div class="s-intro__img">
+							<div class="img-wrap">
+								<img src="medias/main.jpg" alt="메인 비주얼 이미지"
+									style="max-width: 100%; height: auto;">
+							</div>
+						</div>
+					</div>
+					<a href="javascript:void(0);" class="btnset"
+						style="border-radius: 50px; width: 400px; height: 100px; color: rgb(255, 255, 255); position: absolute; top: 90%; /* 이미지 아래로 배치 (70% 위치) */ left: 50%; transform: translateX(-50%); background-position: 50% 50%; font-size: 40px; font-weight: 700;">
+						다시 추천 받기 </a>
+
+				</section>
+			</div>
+			<body>
+				<div class="th-layout-header">
+					<header class="butti-N1" id="cLM4QoJyIK"> </header>
+				</div>
+				<main class="th-layout-main">
+					<div class="th-layout-sideleft"></div>
+					<div class="th-layout-stickyleft"></div>
+					<div class="th-layout-content">
+						<section class="butti-N10" id="TRm4QOJym7"></section>
+						<section class="butti-N12" id="Efm4qoJyQA">
+
+							<div class="contents-container container-md">
+								<div class="title-area">
+									<h2>
+										선택한 MBTI : <span th:text="${mbti}"></span>
+									</h2>
+									<div th:each="travel : ${travels}">
+										<p class="h1">
+											<span th:text="${travel.mbti_comm}"></span>
+										</p>
+									</div>
+								</div>
+							</div>
+
+						</section>
+
+						<section class="butti-N24" id="ukm4qojytv">
+							<h2 class="blind">추천 여행지</h2>
+
+							<br>
+							<div class="contents-container container-md">
+								<div class="contents-inner">
+									<div class="cardset cardset-xl cardset-hor">
+
+										<!-- 카카오 지도 영역  -->
+										<div th:each="travel : ${travels}">
+											<figure class="cardset-figure">
+												<body>
+													<div id="map" style="width: 500px; height: 400px;"></div>
+													<script type="text/javascript"
+														src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06163efbb7d39db328c2fdc8b6db078f"></script>
+													<script>
+														var mapContainer = document
+																.getElementById('map'), // 지도를 표시할 div 
+														mapOption = {
+															center : new kakao.maps.LatLng(
+																	35.15843,
+																	129.15980), // 지도의 중심좌표
+															level : 3
+														// 지도의 확대 레벨
+														};
+
+														var map = new kakao.maps.Map(
+																mapContainer,
+																mapOption);
+
+														// 마커가 표시될 위치입니다 
+														var markerPosition = new kakao.maps.LatLng(
+																35.15843,
+																129.15980);
+
+														// 마커를 생성합니다
+														var marker = new kakao.maps.Marker(
+																{
+																	position : markerPosition
+																});
+
+														// 마커가 지도 위에 표시되도록 설정합니다
+														marker.setMap(map);
+
+														var iwContent = '<div style="padding:4px;">Hello 부산! <br><a href="https://map.kakao.com/link/map/Hello 부산!,35.15843, 129.15980" style="color:blue" target="_blank">지도보기</a> </div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+														iwPosition = new kakao.maps.LatLng(
+																35.15843,
+																129.15980); //인포윈도우 표시 위치입니다 <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a>
+
+														// 인포윈도우를 생성합니다
+														var infowindow = new kakao.maps.InfoWindow(
+																{
+																	position : iwPosition,
+																	content : iwContent
+																});
+
+														// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+														infowindow.open(map,
+																marker);
+													</script>
+												</body>
+											</figure>
+										</div>
+										<!-- 카카오 지도 영역  -->
+
+
+										<div class="cardset-body">
+											<div th:each="travel : ${travels}">
+												<strong> <span th:text="${travel.travel_name}"></span></strong>
+												<p class="cardset-desc p1" style="text-align: left;">
+													<span th:text="${travel.travel_comment}"
+														style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; max-width: 800px;">
+													</span> <br /> <br /> <br />
+													<button type="button" class="btn btn-outline-info"
+														th:onclick="|window.open('@{${travel.travel_info}}', '_blank')|">
+														<span th:text="${travel.travel_name}"></span>에 가서 이런 축제 어때요?</button>
+											</div>
+											</li>
+										</div>
+									</div>
+								</div>
+						</section>
+					</div>
+					<div class="th-layout-stickyright"></div>
+					<div class="th-layout-sideright"></div>
+				</main>
+
+			</body>
+
+		</div>
+		<!-- [E]landing-N3 -->
+		<!-- [S]landing-N4 -->
+		<div class="landing-N4" data-bid="Aem49HCv9p" id=""></div>
+		<!-- [E]landing-N4 -->
+		<!-- [S]landing-N5 -->
+		<div class="landing-N5" data-bid="vmM49HCvDk"></div>
+		<!-- [E]landing-N5 -->
+	</main>
+	<!-- [S]landing-N2 -->
+	<footer class="landing-N2" data-bid="JgM49hCViN" id="">
+		<div class="footer-container" style="width: 400px;">
+			<footer id="colophon" class="s-footer"
+				style="width: 2000px; height: 500px; position: absolute; background-position: 50% 50%; border-width: 0px;">
+				<div class="inner">
+					<div class="ss-row s-footer__contact-content">
+						<div class="ss-column lg-5 md-6 stack-on-900 left-block">
+							<div>
+								<div class="s-footer__buttons">
+									<a href="javascript:void(0);"
+										class="ss-btn ss-btn--primary u-fullwidth">Say Hello</a><a
+										href="javascript:void(0);"
+										class="ss-btn ss-btn--stroke u-fullwidth">Get My CV</a>
+								</div>
+							</div>
+						</div>
+						<div class="ss-column lg-4 md-5 stack-on-900 right-block">
+							<div class="s-footer__contact-info">
+								<h2 class="text-subtitle">Start A Project</h2>
+								<ul class="link-list">
+									<li><a href="javascript:void(0);">sayhello@augustine.com</a></li>
+									<li><a href="javascript:void(0);">Facebook</a></li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+					<div class="ss-row s-footer__bottom">
+						<div class="ss-column ss-copyright">
+							<span>© Copyright Augustine 2023</span><span>Design by<a
+								href="javascript:void(0);">StyleShout</a></span>
+						</div>
+						<div class="ss-go-top">
+							<a class="smoothscroll" title="Back to Top"
+								href="javascript:void(0);"><svg
+									xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+									viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)">
+                  <path d="M6 4h12v2H6zm5 10v6h2v-6h5l-6-6-6 6z"></path>
+                </svg></a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</footer>
+	<!-- [E]landing-N2 -->
+	<script src="resources/js/setting.js"></script>
+	<script src="resources/js/plugin.js"></script>
+	<script src="resources/js/template.js"></script>
+	<script src="resources/js/common.js"></script>
+	<script src="resources/js/script.js"></script>
+	<script>
+		function logoutWithAlert(event) {
+			event.preventDefault(); // 기본 동작 중지
+			if (confirm("로그아웃하시겠습니까?")) {
+				alert("정상적으로 로그아웃되었습니다.");
+				window.location.href = "/logout"; // 로그아웃 URL 호출
+			}
+		}
+	</script>
+
+	<!-- 회원가입 성공 알림-->
+</body>

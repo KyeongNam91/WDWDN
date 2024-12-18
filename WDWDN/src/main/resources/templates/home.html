@@ -115,7 +115,9 @@
             </div>
           </div>
 
-			    <a th:if="${username != null}" href="/list1.html" class="btnset"
+			    <a th:if="${username != null}" 
+			       th:href="@{/recomm}"  
+			       class="btnset"
 			    style="
 			           border-radius: 50px; 
 			           width: 400px; 

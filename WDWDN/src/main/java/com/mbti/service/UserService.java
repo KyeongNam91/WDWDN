@@ -57,7 +57,7 @@ public class UserService {
         User user = userRepository.findByUsername(username);
         return user.getMbti(); // 사용자 또는 MBTI 정보가 없으면 "없음" 반환
     }
-
+	
 	public User findByUsernameAndPassword(String username, String password) {
 		   return userRepository.findByUsernameAndPassword(username, password);
 		
