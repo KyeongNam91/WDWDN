@@ -154,37 +154,37 @@
         <div class="contents-container container-md">
           <div class="title-area">
           <h2>선택한 MBTI : <span th:text="${mbti}"></span></h2>
-          <div th:each="game : ${games}">
-			    <p class="h1"><span th:text="${game.mbti_comm}"></span></p>
-			    <p class="h1">추천 게임 장르:<span th:text="${game.game_genre}"></span></p>
+          <div th:each="exercise : ${exercises}">
+			    <p class="h1"><span th:text="${exercise.mbti_comm}"></span></p>
+			   
 			</div>
           </div>
         </div>
         
       </section>
       <section class="butti-N24" id="ukm4qojytv">
-        <h2 class="blind">추천 게임</h2>
+        <h2 class="blind">추천 운동</h2>
         <br>
         <div class="contents-container container-md">
           <div class="contents-inner">
             <div class="cardset cardset-xl cardset-hor">
-             <div th:each="game : ${games}">
+            <div th:each="exercise : ${exercises}">
               <figure class="cardset-figure">
-               <img class="cardset-img" th:src="@{'/images/' + ${game.game_name} + '.jpg'}" alt="카드 이미지" />
+               <img class="cardset-img" th:src="@{'/images/' + ${exercise.exercise_name} + '.jpg'}" alt="카드 이미지" />
               </figure>
               </div>
               
               <div class="cardset-body">
-              <div th:each="game : ${games}">
-                <strong> <span th:text="${game.game_name}"></span></strong>
-                <p class="cardset-desc p1" style="text-align: left;"><span th:text="${game.game_comment}"></span> <br />
-               <span th:text="${game.game_info}"></span>
+              <div th:each="exercise : ${exercises}">
+                <strong> <span th:text="${exercise.exercise_name}"></span></strong>
+                <p class="cardset-desc p1" style="text-align: left;"><span th:text="${exercise.exercise_comment}"></span> <br />
+               <span th:text="${exercise.exercise_info}"></span>
                <br/>
               <br/>
 				<button type="button" class="btn btn-outline-info"
-				        th:onclick="|window.open('@{${game.game_view}}', '_blank')|">
-				    플레이 하러가기
-				</button>
+				        th:onclick="|window.open('@{${exercise.exercise_map}}', '_blank')|">
+				    국내 서핑지 추천 9곳
+				</button> 
               </div>
               </li>
             </div>

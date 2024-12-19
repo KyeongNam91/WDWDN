@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mbti.service.ExerciseService;
 import com.mbti.service.GameService;
 import com.mbti.service.MovieService;
 import com.mbti.service.TravelService;
 import com.mbti.service.UserService;
+import com.mbti.vo.Exercise;
 import com.mbti.vo.Game;
 import com.mbti.vo.Movie;
 import com.mbti.vo.Travel;
@@ -36,6 +38,9 @@ public class HomeController {
 	
 	@Autowired
 	private GameService gameService;
+	
+	@Autowired
+	private ExerciseService exerciseService;
 	
 	@GetMapping("/home.html")
 	public String homePage(Model model, Principal principal) {
@@ -154,6 +159,38 @@ public class HomeController {
 	 	        
 	 	    }
 	    
+	 	   @GetMapping("/list4.html")
+			public String exercisepage(Model model, Principal principal) {
+				 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			        String username = (authentication != null && authentication.getPrincipal() instanceof User)
+			                ? ((User) authentication.getPrincipal()).getUsername()
+			                : null;
+
+			        if (username != null) {
+			            String mbti = userService.getUserMbti(username); // MBTI 값 가져오기
+			            List<Exercise> exercises = exerciseService.getExercisesByMbtiName(mbti); // MBTI와 일치하는 여행 데이터 가져오기
+			            
+			            model.addAttribute("username", username);
+			            model.addAttribute("mbti", mbti); // 모델에 MBTI 추가
+			            model.addAttribute("exercises", exercises); // 여행 데이터를 모델에 추가
+			           
+			        }
+			        return "list4.html"; // home.html로 이동
+			    }
+			
+		    @PostMapping("/list4.html")
+		    public String exercisePost(Model model, Principal principal) {
+		        String username = principal.getName(); // 로그인된 유저 이름
+		        String mbti = userService.getUserMbti(username); // MBTI 값 가져오기
+		        
+		        model.addAttribute("username", username);  
+		        model.addAttribute("mbti", mbti); // 모델에 MBTI 추가
+
+		        return "list4.html"; // home.html로 이동
+		        
+		    }
+		    
+	 	    
 	    @GetMapping("/recommendation")
 	    public String getRecommendationPage(Principal principal, Model model) {
 	        if (principal != null) {
@@ -184,9 +221,15 @@ public class HomeController {
                     }
 	                   
 	                case "ESTP":
-	                    return "redirect:/list2.html";
+	                	 Random random2 = new Random();
+	                    	boolean isList3 = random2.nextBoolean(); // true 또는 false 반환
+	                    if (isList3) {
+	                        return "redirect:/list2.html";
+	                    } else {
+	                        return "redirect:/list4.html";
+	                    }
 	                default:
-	                    return "redirect:/default.html";
+	                    return "redirect:/home.html";
 	            }
 	        }
 	        // 로그인되지 않은 경우 로그인 페이지로 이동

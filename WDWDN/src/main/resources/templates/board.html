@@ -14,19 +14,195 @@
   <meta property="og:description" content="웹사이트입니다">
   <meta property="og:image" content="https://웹사이트/images/opengraph.png">
   <meta property="og:url" content="https://웹사이트">
-  <title>컨텐츠 추천 | 오늘뭐하지</title>
+  <title>첫페이지 | 오늘뭐하지</title>
   <link rel="stylesheet" href="/css/setting.css">
   <link rel="stylesheet" href="/css/plugin.css">
   <link rel="stylesheet" href="/css/template.css">
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/style.css">
+  <style>
+  table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+section.notice {
+  padding: 80px 0;
+}
+
+.page-title {
+  margin-bottom: 60px;
+}
+.page-title h3 {
+  font-size: 28px;
+  color: #333333;
+  font-weight: 400;
+  text-align: center;
+}
+
+#board-search .search-window {
+  padding: 15px 0;
+  background-color: #f9f7f9;
+}
+#board-search .search-window .search-wrap {
+  position: relative;
+/*   padding-right: 124px; */
+  margin: 0 auto;
+  width: 80%;
+  max-width: 564px;
+}
+#board-search .search-window .search-wrap input {
+  height: 40px;
+  width: 100%;
+  font-size: 14px;
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+}
+#board-search .search-window .search-wrap input:focus {
+  border-color: #333;
+  outline: 0;
+  border-width: 1px;
+}
+#board-search .search-window .search-wrap .btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 108px;
+  padding: 0;
+  font-size: 16px;
+}
+
+.board-table {
+  font-size: 13px;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.board-table a {
+  color: #333;
+  display: inline-block;
+  line-height: 1.4;
+  word-break: break-all;
+  vertical-align: middle;
+}
+.board-table a:hover {
+  text-decoration: underline;
+}
+.board-table th {
+  text-align: center;
+}
+
+.board-table .th-num {
+  width: 100px;
+  text-align: center;
+}
+
+.board-table .th-date {
+  width: 200px;
+}
+
+.board-table th, .board-table td {
+  padding: 14px 0;
+}
+
+.board-table tbody td {
+  border-top: 1px solid #e7e7e7;
+  text-align: center;
+}
+
+.board-table tbody th {
+  padding-left: 28px;
+  padding-right: 14px;
+  border-top: 1px solid #e7e7e7;
+  text-align: left;
+}
+
+.board-table tbody th p{
+  display: none;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0 30px;
+  font-size: 15px;
+  font-weight: 400;
+  background: transparent;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn-dark {
+  background: #555;
+  color: #fff;
+}
+
+.btn-dark:hover, .btn-dark:focus {
+  background: #373737;
+  border-color: #373737;
+  color: #fff;
+}
+
+.btn-dark {
+  background: #555;
+  color: #fff;
+}
+
+.btn-dark:hover, .btn-dark:focus {
+  background: #373737;
+  border-color: #373737;
+  color: #fff;
+}
+
+/* reset */
+
+* {
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.container {
+  width: 1100px;
+  margin: 0 auto;
+}
+.blind {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  margin: -1px;
+  width: 1px;
+  height: 1px;
+}
+  
+  </style>
+  
 </head>
 
-<style>
-.th-layout-main {
-  background: none;
-}
-</style>
 <body>
   <!-- [S]landing-N1 -->
   <header class="landing-N1" data-bid="exm49HCv2S" id="">
@@ -34,7 +210,7 @@
       <div class="s-header__block">
         <h1 class="s-header__h1">
           <div class="site-title">
-            <a href="javascript:void(0);" rel="home">Wdwdn.</a>
+            <a href="/home.html" rel="home">Wdwdn.</a>
           </div>
         </h1>
         <a class="s-header__menu-toggle" href="javascript:void(0);">
@@ -45,7 +221,7 @@
         <nav class="s-header__nav">
           <ul>
             <li class="current">
-            <a href="/home.html" class="smoothscroll">Home</a>
+              <a href="/home.html" class="smoothscroll">Home</a>
             </li>
             <li>
               <a href="#about" class="smoothscroll">추천1</a>
@@ -104,130 +280,64 @@
     </div>
   </header>
   <!-- [E]landing-N1 -->
-  <main class="th-layout-main ">
-    <!-- [S]landing-N3 -->
-    <div class="landing-N3" data-bid="hEm49HCV6Q" id="">
-      <div class="contents-container">
-        <section id="intro" class="s-intro">
-          <div class="s-intro__content">
-            <div class="s-intro__text">
-              <h1 class="s-intro__text-huge" style="font-weight: 300; background-position: 50% 50%; color: rgb(168, 33, 33); white-space: nowrap; position: relative; font-size: 150px;">What do we do now?​<br></h1>
-            </div>
-            <div class="s-intro__img">
-              <div class="img-wrap">
-                 <img src="medias/main.jpg" alt="메인 비주얼 이미지" style="max-width: 100%; height: auto;">
-              </div>
-            </div>
-          </div>
-       <a href="javascript:void(0);" 
-		   class="btnset" 
-		   style="
-		       border-radius: 50px; 
-		       width: 400px; 
-		       height: 100px; 
-		       color: rgb(255, 255, 255); 
-		       position: absolute; 
-		       top: 90%; /* 이미지 아래로 배치 (70% 위치) */
-		       left: 50%; 
-		       transform: translateX(-50%); 
-		       background-position: 50% 50%; 
-		       font-size: 40px; 
-		       font-weight: 700;"
-		   onclick="goBackAndReload();"> <!-- 여기서 태그를 올바르게 닫음 -->
-		   다시 추천 받기
-		</a>
-        </section>
-      </div>
-      <body>
-  <div class="th-layout-header">
-    <header class="butti-N1" id="cLM4QoJyIK">
-    </header>
-  </div>
-  <main class="th-layout-main">
-    <div class="th-layout-sideleft"></div>
-    <div class="th-layout-stickyleft"></div>
-    <div class="th-layout-content">
-      <section class="butti-N10" id="TRm4QOJym7">
-      </section>
-      <section class="butti-N12" id="Efm4qoJyQA">
-       
-        <div class="contents-container container-md">
-          <div class="title-area">
-          <h2>선택한 MBTI : <span th:text="${mbti}"></span></h2>
-          <div th:each="game : ${games}">
-			    <p class="h1"><span th:text="${game.mbti_comm}"></span></p>
-			    <p class="h1">추천 게임 장르:<span th:text="${game.game_genre}"></span></p>
-			</div>
-          </div>
-        </div>
+  <section class="notice">
+  <div class="page-title">
         
-      </section>
-      <section class="butti-N24" id="ukm4qojytv">
-        <h2 class="blind">추천 게임</h2>
-        <br>
-        <div class="contents-container container-md">
-          <div class="contents-inner">
-            <div class="cardset cardset-xl cardset-hor">
-             <div th:each="game : ${games}">
-              <figure class="cardset-figure">
-               <img class="cardset-img" th:src="@{'/images/' + ${game.game_name} + '.jpg'}" alt="카드 이미지" />
-              </figure>
-              </div>
-              
-              <div class="cardset-body">
-              <div th:each="game : ${games}">
-                <strong> <span th:text="${game.game_name}"></span></strong>
-                <p class="cardset-desc p1" style="text-align: left;"><span th:text="${game.game_comment}"></span> <br />
-               <span th:text="${game.game_info}"></span>
-               <br/>
-              <br/>
-				<button type="button" class="btn btn-outline-info"
-				        th:onclick="|window.open('@{${game.game_view}}', '_blank')|">
-				    플레이 하러가기
-				</button>
-              </div>
-              </li>
-            </div>
-            
-            <!-- <div class="cardset cardset-xl cardset-hor">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="/images/wilteo.jpg" alt="카드 이미지" />
-              </figure>
-              <div class="cardset-body">
-                <strong class="cardset-tit h3">월터의 상상은 현실이 된다.</strong>
-                <p class="cardset-desc p1">호기심이 많은 예술가인 ISFP는 언제나 변화와 혁신 그리고 예술을 추구합니다. 상상력이 현실로 일어나는 영화 '윌터의 상상은 현실이 된다'를 추천합니다.<br /><br />개봉 2013.12.31.<br />장르 모험, 드라마, 판타지<br />러닝타임 114분<br /><br />[보러가기 버튼]</p>
-              </div>
-            </div>
-            
-            <div class="cardset cardset-xl cardset-hor">
-              <figure class="cardset-figure">
-                <img class="cardset-img" src="/images/geuraendeu budapeseuteu.jpeg" alt="카드 이미지" />
-              </figure>
-              <div class="cardset-body">
-                <strong class="cardset-tit h3">그랜드 부다페스트 호텔</strong>
-                <p class="cardset-desc p1">독특한 비주얼과 유머가 가득한 이 영화는 두 주인공의 우정과 모험을 그려내. ISFP는 예술적인 요소를 좋아하기 때문에, 이 영화의 독창적인 스타일과 매력적인 캐릭터들이 큰 즐거움을 줄 것 입니다!<br /><br />개봉 2018.10.11.<br />장르 모험, 미스터리<br />러닝타임 100분<br /><br />[보러가기 버튼]</p>
-              </div>
-            </div> -->
-            
-          </div>
-        </div>
-      </section>
     </div>
-    <div class="th-layout-stickyright"></div>
-    <div class="th-layout-sideright"></div>
-  </main>
 
-</body>
-      
+    <!-- board seach area -->
+    <div id="board-search">
+        <div class="container">
+            <div class="search-window">
+                <form action="">
+                    <div class="search-wrap">
+                        <label for="search" class="blind">공지사항 내용 검색</label>
+                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+                        <button type="submit" class="btn btn-dark">검색</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <!-- [E]landing-N3 -->
-    <!-- [S]landing-N4 -->
-    <div class="landing-N4" data-bid="Aem49HCv9p" id=""></div>
-    <!-- [E]landing-N4 -->
-    <!-- [S]landing-N5 -->
-    <div class="landing-N5" data-bid="vmM49HCvDk"></div>
-    <!-- [E]landing-N5 -->
-  </main>
+   
+  <!-- board list area -->
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-num">번호</th>
+                    <th scope="col" class="th-title">제목</th>
+                    <th scope="col" class="th-date">등록일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>3</td>
+                    <th>
+                      <a href="#!">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+                      <p>테스트</p>
+                    </th>
+                    <td>2017.07.13</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <th><a href="#!">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
+                    <td>2017.06.15</td>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <th><a href="#!">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
+                    <td>2017.06.15</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
   <!-- [S]landing-N2 -->
   <footer class="landing-N2" data-bid="JgM49hCViN" id="">
     <div class="footer-container" style="width: 400px;">
@@ -267,6 +377,8 @@
   <script src="resources/js/template.js"></script>
   <script src="resources/js/common.js"></script>
   <script src="resources/js/script.js"></script>
+  
+  <!-- 로그아웃 경고창  -->
   <script>
     function logoutWithAlert(event) {
         event.preventDefault(); // 기본 동작 중지
@@ -276,14 +388,20 @@
         }
     }
 </script>
+
+  <!-- 미로그인 경고 -->
 <script>
-    function goBackAndReload() {
-        window.history.back(); // 이전 페이지로 이동
-        setTimeout(() => {
-            window.location.reload(); // 새로고침
-        }, 500); // 페이지 이동 후 새로고침을 위한 약간의 지연 시간
+    const isLoggedIn = /*[[${username != null}]]*/ false;
+</script>
+<script>
+    function checkLogin(event) {
+        if (!isLoggedIn) {
+            event.preventDefault(); // 기본 동작(링크 이동) 막기
+            alert("로그인이 필요합니다.");
+        } else {
+            window.location.href = "/list1.html"; // 로그인 상태라면 이동
+        }
     }
 </script>
   
   <!-- 회원가입 성공 알림-->
-</body>
